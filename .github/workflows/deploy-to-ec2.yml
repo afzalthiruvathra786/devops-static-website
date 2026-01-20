@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: SSH deploy to EC2
-        uses: appleboy/ssh-action@v1.0
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{secrets.EC2_HOST}}
           username: ${{secrets.EC2_USER}}
           key: ${{secrets.EC2_SSH_KEY}}
-          scrpts: |
-            docker pull ${{secret.DOCKER_USERNAME}}/devops-static-site:latest
+          scripts: |
+            docker pull ${{secrets.DOCKER_USERNAME}}/devops-static-site:latest
             docker rm -f website || true
-            docker run -d -p 80:80 --name website ${{secret.DOCKER_USERNAME}}/devops-static-site:latest
+            docker run -d -p 80:80 --name website ${{secrets.DOCKER_USERNAME}}/devops-static-site:latest
 
