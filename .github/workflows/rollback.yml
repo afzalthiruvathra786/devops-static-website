@@ -1,0 +1,21 @@
+name: rollback 
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target Environment'
+        required: true
+        default: ''
+        type: string
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: rollback
+        run: docker run -d -p 80:80 ${{secrets.DOCKER_USERNAME}}/devops-static-site:${{github.event.inputs.environment}}
+  
+        
