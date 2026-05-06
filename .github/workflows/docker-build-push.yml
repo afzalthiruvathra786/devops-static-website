@@ -22,6 +22,6 @@ jobs:
 
       - name: build and push
         run: |
-          docker build -t ${{secrets.DOCKER_USERNAME}}/devops-static-site:latest .
-          docker push ${{secrets.DOCKER_USERNAME}}/devops-static-site:latest
+          docker build -t ${{secrets.DOCKER_USERNAME}}/devops-static-site:${{github.sha}} .
+          docker push ${{secrets.DOCKER_USERNAME}}/devops-static-site:${{github.sha}}
 
